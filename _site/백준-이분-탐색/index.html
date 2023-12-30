@@ -1,0 +1,751 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[백준] 이분 탐색 - Site Title</title>
+<meta name="description" content="백준 문제">
+
+
+  <meta name="author" content="Your Name">
+  
+  <meta property="article:author" content="Your Name">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Site Title">
+<meta property="og:title" content="[백준] 이분 탐색">
+<meta property="og:url" content="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EC%9D%B4%EB%B6%84-%ED%83%90%EC%83%89/">
+
+
+  <meta property="og:description" content="백준 문제">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-12-22T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EC%9D%B4%EB%B6%84-%ED%83%90%EC%83%89/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Your Name",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Site Title Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Site Title
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Your Name</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>I am an <strong>amazing</strong> person.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Somewhere</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[백준] 이분 탐색">
+    <meta itemprop="description" content="백준 문제">
+    <meta itemprop="datePublished" content="2023-12-22T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EC%9D%B4%EB%B6%84-%ED%83%90%EC%83%89/" class="u-url" itemprop="url">[백준] 이분 탐색
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>백준 문제</p>
+
+<p><a href="https://www.acmicpc.net/problem/1920">문제 바로가기</a></p>
+
+<p>문제
+N개의 정수 A[1], A[2], …, A[N]이 주어져 있을 때, 이 안에 X라는 정수가 존재하는지 알아내는 프로그램을 작성하시오.</p>
+
+<p>입력
+첫째 줄에 자연수 N(1 ≤ N ≤ 100,000)이 주어진다. 다음 줄에는 N개의 정수 A[1], A[2], …, A[N]이 주어진다. 다음 줄에는 M(1 ≤ M ≤ 100,000)이 주어진다. 다음 줄에는 M개의 수들이 주어지는데, 이 수들이 A안에 존재하는지 알아내면 된다. 모든 정수의 범위는 -231 보다 크거나 같고 231보다 작다.</p>
+
+<p>출력
+M개의 줄에 답을 출력한다. 존재하면 1을, 존재하지 않으면 0을 출력한다.</p>
+
+<p>예제 입력 1 
+5
+4 1 5 2 3
+5
+1 3 7 9 5
+예제 출력 1 
+1
+1
+0
+0
+1</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>백준의 시간제한 1초는 10^8, 즉 1억번의 연산을 할 수 있는 시간이다. 
+이에 맞게 알맞은 시간 복잡도를 갖는 알고리즘을 채택해라.</li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>binaraySearch는 정렬된 리스트에서만 구현할 수 있다.
+처음에 주어진 리스트가 정렬되지 않음을 간과하였다.</li>
+  <li>지금은 MergeSort를 직접 구현 못하여 다른 사람의 코드를 가져와서 해결했다.
+자료구조 복습할 때 반드시 직접 구현할 수 있게 만들자.</li>
+  <li>C언어로 백준 풀려니까 동적 메모리부터 여러 가지로 귀찮다.
+그러나 자료구조 공부 끝나면 바로 C++으로 갈아타자.</li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>첫 시도 : binary Search<br />
+“리스트가 정렬되지 않았구나, 정렬을 시키자.”<br />
+두 번째 시도 : Selection Sort + binary Search<br />
+“Selection Sort는 O(N^2)의 시간복잡도를 가지므로 시간 초과. O(NlogN)를 가지는 정렬 알고리즘을 채택하자”<br />
+세 번째 시도 : Merge Sort + binary Search</p>
+
+<h1 id="내-코드">내 코드</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//MergeSort 부분의 출처 : https://airsbigdata.tistory.com/167
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX_SIZE 100000
+int binarySearch(int* array, int size, int target);
+int sorted[MAX_SIZE];
+void merge(int list[], int left, int mid, int right) {
+	int i, j, k, l;
+	i = left;
+	j = mid + 1;
+	k = left;
+
+	/* 분할 정렬된 list의 합병 */
+	while (i &lt;= mid &amp;&amp; j &lt;= right) {
+		if (list[i] &lt;= list[j])
+			sorted[k++] = list[i++];
+		else
+			sorted[k++] = list[j++];
+	}
+
+	// 남아 있는 값들을 일괄 복사
+	if (i &gt; mid) {
+		for (l = j; l &lt;= right; l++)
+			sorted[k++] = list[l];
+	}
+	// 남아 있는 값들을 일괄 복사
+	else {
+		for (l = i; l &lt;= mid; l++)
+			sorted[k++] = list[l];
+	}
+
+	// 배열 sorted[](임시 배열)의 리스트를 배열 list[]로 재복사
+	for (l = left; l &lt;= right; l++) {
+		list[l] = sorted[l];
+	}
+};
+void merge_sort(int list[], int left, int right) {
+	int mid;
+
+	if (left &lt; right) {
+		mid = (left + right) / 2; // 중간 위치를 계산하여 리스트를 균등 분할 -분할(Divide)
+		merge_sort(list, left, mid); // 앞쪽 부분 리스트 정렬 -정복(Conquer)
+		merge_sort(list, mid + 1, right); // 뒤쪽 부분 리스트 정렬 -정복(Conquer)
+		merge(list, left, mid, right); // 정렬된 2개의 부분 배열을 합병하는 과정 -결합(Combine)
+	}
+}
+
+int main()
+{
+	//input
+	int n, m;
+	scanf("%d", &amp;n);
+	int* list = (int*)malloc(sizeof(int) * n);
+	for (size_t i = 0; i &lt; n; i++)
+		scanf("%d", &amp;list[i]);
+	scanf("%d", &amp;m);
+	int* targets = (int*)malloc(sizeof(int) * m);
+	for (size_t i = 0; i &lt; m; i++)
+		scanf("%d", &amp;targets[i]);
+
+	//sort
+	merge_sort(list, 0, n - 1);
+
+
+	//search
+	for (size_t i = 0; i &lt; m; i++)
+		printf("%d\n", binarySearch(list, n, targets[i]));
+
+
+	free(list);
+	free(targets);
+	return 0;
+}
+
+
+
+int binarySearch(int* array, int size, int target) {
+	int left = 0, right = size - 1;
+	int mid;
+	while (right &gt;= left) {
+		mid = (left + right) / 2;
+		if (target == array[mid]) return 1;
+		else if (target &gt; array[mid]) {
+			left = mid + 1;
+		}
+		else {
+			right = mid - 1;
+		}
+	}
+	return 0;
+}
+</code></pre></div></div>
+
+<h1 id="다른-사람-코드-in-c">다른 사람 코드 (in C++)</h1>
+
+<p>역시 C++은 내장함수인 sort() 함수가 있어 코드가 매우 짧다.
+만일 내가 C++로 했다면 sort() 함수를 바로 가져다 쓸 수 있어 편했을 텐데, 그랬다면 위에 서술한 시간복잡도에 따른 알고리즘의 채택 과정을 경험하지 못한 채 문제 풀이를 끝냈을 것이다. (sort 함수는 NlogN의 quick Sort를 이용해 제작됨)
+귀찮은 면이 매우 많은 low-level인 C언어이지만 그만큼 하나하나 내가 다 설정해 주어서 공부할 때는 이런 점에서 도움이 된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int n,m,t;
+int bs(int arr[],int p,int r,int num)
+{
+    if(p&lt;=r)
+    {
+        int mid=(p+r)/2;
+        if(arr[mid]==num)
+            return 1;
+        else if(arr[mid]&gt;num)
+            return bs(arr,p,mid-1,num);
+        else
+            return bs(arr,mid+1,r,num);
+    }
+    return 0;
+}
+
+int main()
+{
+    cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin &gt;&gt; n;
+    int arr[n]={};
+    for(int i=0;i&lt;n;i++)
+        cin &gt;&gt; arr[i];
+    sort(arr,arr+n);
+    cin &gt;&gt; m;
+    for(int i=0;i&lt;m;i++)
+    {
+        cin &gt;&gt; t;
+        cout &lt;&lt; bs(arr,0,n,t) &lt;&lt; "\n";
+    }
+
+}
+
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-12-22T00:00:00+09:00">December 22, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%B0%B1%EC%A4%80%5D+%EC%9D%B4%EB%B6%84+%ED%83%90%EC%83%89%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B0%25B1%25EC%25A4%2580-%25EC%259D%25B4%25EB%25B6%2584-%25ED%2583%2590%25EC%2583%2589%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B0%25B1%25EC%25A4%2580-%25EC%259D%25B4%25EB%25B6%2584-%25ED%2583%2590%25EC%2583%2589%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B0%25B1%25EC%25A4%2580-%25EC%259D%25B4%25EB%25B6%2584-%25ED%2583%2590%25EC%2583%2589%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EC%9D%BC%EA%B8%B0-20%EB%8C%80%EC%9D%98-%EA%B8%B0%ED%9A%8C%EB%B9%84%EC%9A%A9/" class="pagination--pager" title="[일기] 20대의 기회비용
+">Previous</a>
+    
+    
+      <a href="/%EB%B0%B1%EC%A4%80-IF%EB%AC%B8-%EC%A2%80-%EB%8C%80%EC%8B%A0-%EC%8D%A8%EC%A4%98/" class="pagination--pager" title="[백준] if문 좀 대신 써줘
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EB%93%9C%EB%9E%98%EA%B3%A4-%EC%95%A4-%EB%8D%98%EC%A0%84/" rel="permalink">[백준] 드래곤 앤 던전
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Gold IV] 드래곤 앤 던전 - 16434
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EB%8F%84%ED%86%A0%EB%A6%AC-%EC%88%A8%EA%B8%B0%EA%B8%B0/" rel="permalink">[백준] 도토리 숨기기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Gold II] 도토리 숨기기 - 15732
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EA%B3%B5%EC%9C%A0%EA%B8%B0-%EC%84%A4%EC%B9%98/" rel="permalink">[백준] 공유기 설치
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Gold IV] 공유기 설치 - 2110
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EB%9E%9C%EC%84%A0-%EC%9E%90%EB%A5%B4%EA%B8%B0/" rel="permalink">[백준] 랜선 자르기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Silver II] 랜선 자르기 - 1654
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Your Name. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

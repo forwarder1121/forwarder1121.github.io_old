@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-30T17:25:01+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Site Title</title><subtitle>An amazing website.</subtitle><author><name>Your Name</name></author><entry><title type="html">[백준] 드래곤 앤 던전</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%93%9C%EB%9E%98%EA%B3%A4-%EC%95%A4-%EB%8D%98%EC%A0%84/" rel="alternate" type="text/html" title="[백준] 드래곤 앤 던전" /><published>2023-12-28T00:00:00+09:00</published><updated>2023-12-28T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EB%93%9C%EB%9E%98%EA%B3%A4%20%EC%95%A4%20%EB%8D%98%EC%A0%84</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%93%9C%EB%9E%98%EA%B3%A4-%EC%95%A4-%EB%8D%98%EC%A0%84/"><![CDATA[<h1 id="gold-iv-드래곤-앤-던전---16434">[Gold IV] 드래곤 앤 던전 - 16434</h1>
+
+<p><a href="https://www.acmicpc.net/problem/16434">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 2564 KB, 시간: 160 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>이분 탐색, 구현</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 28일 11:35:51</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>용사는 공주를 구하기 위해 무시무시한 용이 있는 던전으로 향하기로 하였습니다. 우선 용사는 용사 자신과 던전을 분석하였습니다.</p>
+
+<p>용사에게는 세 종류의 능력치가 있습니다. </p>
+
+<ul>
+	<li><em>H<sub>MaxHP</sub></em> : 용사의 최대 생명력입니다. 이 값은 1이상이어야 하며 던전에 들어간 이후로 변하지 않습니다.</li>
+	<li><em>H<sub>CurHP</sub></em> : 현재 용사의 생명력입니다. 던전에 들어가기 전 이 값은 용사의 최대 생명력 <em>H<sub>MaxHP</sub></em>와 같습니다. 이 값은 <em>H<sub>MaxHP</sub></em>보다 커질 수 없습니다.</li>
+	<li><em>H<sub>ATK</sub></em> : 용사의 공격력입니다.</li>
+</ul>
+
+<p>던전은 총 <em>N</em>개의 방으로 이루어져 있고 <em>i</em>번째 방을 통해서만 <em>i</em>+1번째 방으로 이동 할 수 있습니다. 방에는 포션이 있거나 몬스터가 있는데 몬스터가 있을 경우 몬스터를 쓰러트려야지 다음방으로 이동 할 수 있습니다. <em>N</em>번째 방에는 공주와 용이 있고, 용을 무찌르면 공주를 구할 수 있습니다.</p>
+
+<p>몬스터가 있는 방에 올 경우 다음과 같이 전투가 진행됩니다.</p>
+
+<ol>
+	<li>용사의 공격력 <em>H<sub>ATK</sub></em>만큼 몬스터의 생명력을 깎습니다.</li>
+	<li>몬스터의 생명력이 0 이하이면 전투가 종료되고 용사는 다음 방으로 이동합니다.</li>
+	<li>몬스터의 공격력만큼 용사의 생명력 <em>H<sub>CurHP</sub></em>를 깎습니다.</li>
+	<li>용사의 생명력이 0 이하이면 전투가 종료되고 용사는 사망합니다.</li>
+	<li>다시 1부터 진행합니다.</li>
+</ol>
+
+<p>포션이 있는 방에 올 경우 포션을 마셔서 현재 용사의 생명력 <em>H<sub>CurHP</sub></em>가 일정량 회복되고 공격력 <em>H<sub>ATK</sub></em>도 일정량만큼 증가됩니다. 회복된 생명력이 최대 생명력 <em>H<sub>MaxHP</sub></em>보다 큰 경우 용사의 현재 생명력 <em>H<sub>CurHP</sub></em>가 최대 생명력 <em>H<sub>MaxHP</sub></em>와 같아집니다.</p>
+
+<p>용사는 던전으로 향하기 전에 만반의 준비를 하고 있습니다. 용사는 수련을 하면 최대 생명력 <em>H<sub>MaxHP</sub></em>를 늘릴 수 있는데 얼마나 수련해야 할지 고민입니다.</p>
+
+<p>용사는 <em>N</em>번 방에 있는 용을 쓰러트리기 위한 최소의 <em>H<sub>MaxHP</sub></em>를 여러분이 계산해주면 좋겠다고 합니다.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>첫 번째 줄에 방의 개수 <em>N </em>(1 ≤ <em>N<sub>  </sub></em>≤ 123,456) 과 용사의 초기 공격력 <em>H<sub>ATK</sub></em> (1 ≤ <em>H<sub>ATK  </sub></em>≤ 1,000,000) 가 주어집니다.</p>
+
+<p><em>i</em>+1번째 줄엔 <em>i</em>번째 방의 정보를 나타내는 세개의 정수 <em>t<sub><span style="font-size: 10.8333px;">i</span></sub></em>, <em>a<sub>i</sub></em>, <em>h<sub>i</sub></em> (<em>t<sub><span style="font-size: 10.8333px;">i</span></sub></em> ∈ {1, 2}, 1 ≤ <em>a<sub>i</sub></em>, <em>h<sub>i  </sub></em>≤ 1,000,000) 가 주어집니다. </p>
+
+<p><em>t<sub><span style="font-size: 10.8333px;">i</span></sub></em>가 1인 경우 공격력이 <em>a<sub>i</sub></em>이고 생명력이 <em>h<sub>i</sub></em>인 몬스터가 있음을 나타내고, <em>t<sub><span style="font-size: 10.8333px;">i</span></sub></em>가 2인 경우 용사의 공격력 <em>H<sub>ATK</sub></em>를 <em>a<sub>i</sub></em>만큼 증가시켜주고 용사의 현재 생명력 <em>H<sub>CurHP</sub></em>를 <em>h<sub>i</sub></em>만큼 회복시켜주는 포션이 있음을 나타냅니다.</p>
+
+<h3 id="출력">출력</h3>
+
+<p>용사가 <em>N</em>번째 방에 있는 용을 쓰러트리기 위한 최소의 <em>H<sub>MaxHP</sub></em>를 출력합니다.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>자료형을 주의하자. 큰 입력 값을 받는 변수와 대입연산을 하는 변수 또한 그와 맞먹는 크기를 가지고 있어야 한다.</li>
+  <li>결투를 하는 것을 while(1)문으로 무식하게 치고받고 하게 만들었는데, 이렇게 구현하면 원인모를 에러가 났었다. 따라서 나눗셈연산으로 진행하였는데, 이건 또 맞았다. 세부적인 차이는 추후 문제를 다시 풀때 확인해야 겠다.</li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>binary search 자체는 잘 구현했는데, 결정함수에서 나오는 에러를 찾지 못해 많이 헤맸다.
+특히 while(1)문을 쓰는 것보다는 그냥 나눗셈연산으로 진행하는 습관 필요.</li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>결투를 하는 걸 while(1)문으로 접근
+long long 변수를 대입하는 변수가 int형이여서 오버플로우 발생
+결투를 나눗셈연산으로 바꿈.</p>
+
+<h1 id="내-코드">내 코드</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct {
+	int num;
+	char name[12];
+}Tier;
+
+int binarySearch(Tier* array, int size, int target);
+
+
+
+int main()
+{
+	//input
+	int N, M;
+	scanf("%d %d", &amp;N, &amp;M);
+	Tier* tiers = (Tier*)malloc(sizeof(Tier) * N);
+	for (size_t i = 0; i &lt; N; i++)
+		scanf("%s %d", tiers[i].name, &amp;tiers[i].num);
+	int* attacks = (int*)malloc(sizeof(int) * M);
+	for (size_t i = 0; i &lt; M; i++)
+		scanf("%d",&amp;attacks[i]);
+	
+    //get
+	for (size_t i = 0; i &lt; M; i++) {
+		binarySearch(tiers,N,attacks[i]);
+	}
+	
+	free(tiers);
+	free(attacks);
+
+	return 0;
+}
+
+
+
+int binarySearch(Tier* array, int size, int target) {
+	int left = 0, right = size - 1;
+	int mid=0;
+	while (right &gt;= left) {
+		mid = (left + ri#include &lt;stdio.h&gt;
+#include  &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt;
+#define MAX 1000000000000000000
+typedef struct {
+	int type;
+	int attack;
+	int health;
+}ROOM;
+
+int main() {
+
+	//input
+	int n, H_ATK;
+	scanf("%d %d", &amp;n, &amp;H_ATK);
+	ROOM* rooms = (ROOM*)malloc(sizeof(ROOM) * n);
+	for (size_t i = 0; i &lt; n; i++)
+		scanf("%d %d %d", &amp;rooms[i].type, &amp;rooms[i].attack, &amp;rooms[i].health);
+
+	unsigned long long low = 0, high = MAX;
+	bool alive = true;
+	while (low &lt;= high) {
+
+		alive = true;
+		unsigned long long mid = low + (high - low) / 2;
+		unsigned long long H_CurHP = mid;
+		unsigned long long H_CurATK = H_ATK;
+		//printf("low %ld mid %ld high %ld\n", low, mid, high);
+		for (size_t i = 0; i &lt; n &amp;&amp; alive; i++) {
+			if (rooms[i].type == 1) {
+				int M_HP = rooms[i].health;
+				int M_ATTACK = rooms[i].attack;
+				unsigned long long M_dieTurn = M_HP / H_CurATK + ((M_HP % H_CurATK) &gt; 0 ? 1 : 0);
+				unsigned long long H_dieTurn = H_CurHP / M_ATTACK + ((H_CurHP % M_ATTACK) &gt; 0 ? 1 : 0);
+				if (M_dieTurn &lt;= H_dieTurn) {//생존
+					H_CurHP -= M_ATTACK * (M_dieTurn - 1);
+				}
+				else {
+					alive = false;
+				}
+			}
+			else {
+				H_CurHP = H_CurHP + rooms[i].health &gt; mid ? mid : H_CurHP + rooms[i].health;
+				H_CurATK += rooms[i].attack;
+			}
+		}
+
+		if (alive) high = mid - 1;
+		else low = mid + 1;
+
+	}
+
+	printf("%lld", low);
+
+
+	return 0;
+</code></pre></div></div>
+
+<p>추후에 다시 풀어야 할 문제이다.</p>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[[Gold IV] 드래곤 앤 던전 - 16434]]></summary></entry><entry><title type="html">[백준] 도토리 숨기기</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%8F%84%ED%86%A0%EB%A6%AC-%EC%88%A8%EA%B8%B0%EA%B8%B0/" rel="alternate" type="text/html" title="[백준] 도토리 숨기기" /><published>2023-12-28T00:00:00+09:00</published><updated>2023-12-28T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EB%8F%84%ED%86%A0%EB%A6%AC%20%EC%88%A8%EA%B8%B0%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%8F%84%ED%86%A0%EB%A6%AC-%EC%88%A8%EA%B8%B0%EA%B8%B0/"><![CDATA[<h1 id="gold-ii-도토리-숨기기---15732">[Gold II] 도토리 숨기기 - 15732</h1>
+
+<p><a href="https://www.acmicpc.net/problem/15732">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 1116 KB, 시간: 4 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>이분 탐색</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 29일 10:23:07</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>HEPC 1등 상금으로 도토리 D개를 받은 욕심많은 다람쥐 수형이는 자신의 모든 도토리를 뺏기지 않게 보관하려고 한다. 수형이는 1부터 N까지의 번호가 붙여있는 N개의 상자를 가지고 있고 이 안에 도토리를 넣어 다른 다람쥐들이 찾지 못하게 전부 숨기려고 한다. 상자가 너무 많아 도토리가 있는 상자를 모두 외울 수 없는 수형이는 A번 상자부터 B번 상자까지 C개 간격으로 도토리를 하나씩 더 넣는 규칙을 만들었다! 다른 다람쥐들이 규칙을 눈치채고 모든 도토리를 잃는 것이 무서운 나머지 이러한 규칙들을 K개를 만들어 도토리를 최대한 안전하게 저장해 놓으려고 한다. 예를 들어 100번 상자부터 150번상자까지 10개 간격으로, 110번 상자부터 150번 상자까지 15개 간격으로 넣는다면 100, 110, 120, 125, 130, 140, 150번 상자에 도토리가 있으며 110번 상자와 140번 상자에는 2개의 도토리가 들어가 있게 된다. 상자 하나에 들어갈 수 있는 도토리의 개수는 제한이 없으며 앞의 상자부터 최대한 꽉꽉 채워나간다고 했을 때 마지막 도토리가 들어가 있는 상자의 번호를 출력하는 프로그램을 작성하시오.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>첫째 줄에 상자의 개수 N(1 ≤ N ≤ 1,000,000)과 규칙의 개수 K(1 ≤ K ≤ 10,000), 도토리의 개수 D(1 ≤ D ≤ 1,000,000,000)가 주어진다. 그 후 K개 줄에는 A, B, C(1 ≤ C ≤ A ≤ B ≤ N)가 주어지며 A번 상자부터 B번 상자까지 C개 간격으로 도토리를 하나씩 넣는 규칙을 뜻한다. D는 모든 규칙으로 넣을 수 있는 도토리의 수보다 같거나 작다.</p>
+
+<h3 id="출력">출력</h3>
+
+<p>D개의 도토리를 규칙에 맞게 상자 앞에서부터 넣었을 때 마지막 도토리가 들어가는 상자의 번호를 출력하시오.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>MIN, MAX 함수 이용할 것.</li>
+  <li>mid를 좌,우로 이동할 때의 조건 설정 오류.</li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>mid가 각 규칙의 시작보다도 작을 경우는 도토리를 세면 안된다.
+이를 누락하여 틀렸다.</li>
+  <li>while(1)문으로 무식하게 하나하나 세는 알고리즘을 / 연산으로 바꾸는 생각은 잘했다.</li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>mid가 각 규칙의 시작보다도 작을 경우는 도토리를 세면 안되었는데, 테스트 케이스에 없는 경우라 이를 떠올리지 못했다.<br />
+갈길이 멀다…</p>
+
+<h1 id="내-코드">내 코드</h1>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span>  <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#define MIN(X,Y) ((X) &lt; (Y) ? (X) : (Y))
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">start</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">end</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">space</span><span class="p">;</span>
+<span class="p">}</span><span class="n">Rule</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+	<span class="c1">//input</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">d</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">k</span><span class="p">,</span><span class="o">&amp;</span><span class="n">d</span><span class="p">);</span>
+	<span class="n">Rule</span><span class="o">*</span> <span class="n">rules</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rule</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Rule</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">space</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="kt">long</span> <span class="kt">long</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">long</span> <span class="kt">long</span>  <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+		<span class="kt">long</span> <span class="kt">long</span>  <span class="n">usedAcorn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		
+		<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">mid</span> <span class="o">&lt;</span> <span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// 이 부분 누락하여 틀림</span>
+			<span class="n">usedAcorn</span> <span class="o">+=</span> <span class="p">(</span><span class="n">MIN</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span><span class="o">-</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">space</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="k">if</span> <span class="p">(</span><span class="n">usedAcorn</span> <span class="o">&gt;=</span> <span class="n">d</span><span class="p">)</span> <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 이 부분도 등호 성립할때를 누락하였음</span>
+		<span class="k">else</span> <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		
+	<span class="p">}</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%lld"</span><span class="p">,</span> <span class="n">low</span><span class="p">);</span>
+
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>고수가 되고 싶지만 아직은 그렇지 못하다.</p>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[[Gold II] 도토리 숨기기 - 15732]]></summary></entry><entry><title type="html">[백준] 공유기 설치</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EA%B3%B5%EC%9C%A0%EA%B8%B0-%EC%84%A4%EC%B9%98/" rel="alternate" type="text/html" title="[백준] 공유기 설치" /><published>2023-12-26T00:00:00+09:00</published><updated>2023-12-26T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EA%B3%B5%EC%9C%A0%EA%B8%B0%20%EC%84%A4%EC%B9%98</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EA%B3%B5%EC%9C%A0%EA%B8%B0-%EC%84%A4%EC%B9%98/"><![CDATA[<h1 id="gold-iv-공유기-설치---2110">[Gold IV] 공유기 설치 - 2110</h1>
+
+<p><a href="https://www.acmicpc.net/problem/2110">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 2684 KB, 시간: 52 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>이분 탐색, 매개 변수 탐색</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 27일 11:34:03</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>도현이의 집 N개가 수직선 위에 있다. 각각의 집의 좌표는 x<sub>1</sub>, …, x<sub>N</sub>이고, 집 여러 개가 같은 좌표를 가지는 일은 없다.</p>
+
+<p>도현이는 언제 어디서나 와이파이를 즐기기 위해서 집에 공유기 C개를 설치하려고 한다. 최대한 많은 곳에서 와이파이를 사용하려고 하기 때문에, 한 집에는 공유기를 하나만 설치할 수 있고, 가장 인접한 두 공유기 사이의 거리를 가능한 크게 하여 설치하려고 한다.</p>
+
+<p>C개의 공유기를 N개의 집에 적당히 설치해서, 가장 인접한 두 공유기 사이의 거리를 최대로 하는 프로그램을 작성하시오.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>첫째 줄에 집의 개수 N (2 ≤ N ≤ 200,000)과 공유기의 개수 C (2 ≤ C ≤ N)이 하나 이상의 빈 칸을 사이에 두고 주어진다. 둘째 줄부터 N개의 줄에는 집의 좌표를 나타내는 x<sub>i</sub> (0 ≤ x<sub>i</sub> ≤ 1,000,000,000)가 한 줄에 하나씩 주어진다.</p>
+
+<h3 id="출력">출력</h3>
+
+<p>첫째 줄에 가장 인접한 두 공유기 사이의 최대 거리를 출력한다.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>문제 상황을 이해하여, 알맞는 결정함수를 설계하자.<br />
+특히 예제 케이스를 깊게 이해하여야 한다.</li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>parametric search에 대한 문제를 계속 풀다보니 정말 쉬워졌다.<br />
+다만 문제 상황에 따른 결정함수를 초반에 잘못 설계하여 거기서 시간이 좀 소비되었다. 예제 케이스는 100% 이해하고 접근하자.</li>
+  <li>동적 메모리 할당 해제해주자.</li>
+</ul>
+
+<p>같은 유형에 대해 문제를 많이 풀다보니 Gold 문제라고 안 느껴진다.<br />
+그만큼 쉽게 느껴지고 내 실력이 올라오는 것이 느껴진다.<br />
+하나의 알고리즘을 설정하고, 이에 대한 많은 알고리즘을 푸는 방법이 실력 향상에 있어 많은 도움이 된다.</p>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>parametric search로 바로 접근. 전체적인 틀도 바로바로 만들었고 5분컷 낼 것같았지만.. 결정 함수 설계 미스로 인해 시간이 조금 소비되었다.</p>
+
+<h1 id="내-코드">내 코드</h1>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+#define MAX 1000000000
+</span><span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">b</span><span class="p">);</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+	<span class="c1">//input</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">limit</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">limit</span><span class="p">);</span>
+	<span class="kt">int</span><span class="o">*</span> <span class="n">homes</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">homes</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+	<span class="n">qsort</span><span class="p">(</span><span class="n">homes</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="n">compare</span><span class="p">);</span>
+
+	<span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">MAX</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">usedRouter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">nextPoint</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">homes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">nextPoint</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">usedRouter</span><span class="o">++</span><span class="p">;</span>
+				<span class="n">nextPoint</span> <span class="o">=</span><span class="n">homes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span> <span class="n">mid</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		
+		<span class="k">if</span> <span class="p">(</span><span class="n">usedRouter</span><span class="o">&gt;=</span> <span class="n">limit</span><span class="p">)</span> <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">else</span> <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">homes</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">a</span> <span class="o">&gt;</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">b</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">a</span> <span class="o">&lt;</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">b</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+	<span class="k">else</span>
+
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[[Gold IV] 공유기 설치 - 2110]]></summary></entry><entry><title type="html">[백준] 기타 레슨</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EA%B8%B0%ED%83%80-%EB%A0%88%EC%8A%A8/" rel="alternate" type="text/html" title="[백준] 기타 레슨" /><published>2023-12-25T00:00:00+09:00</published><updated>2023-12-25T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EA%B8%B0%ED%83%80%20%EB%A0%88%EC%8A%A8</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EA%B8%B0%ED%83%80-%EB%A0%88%EC%8A%A8/"><![CDATA[<h1 id="silver-i-기타-레슨---2343">[Silver I] 기타 레슨 - 2343</h1>
+
+<p><a href="https://www.acmicpc.net/problem/2343">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 1504 KB, 시간: 16 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>이분 탐색, 매개 변수 탐색</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 26일 21:40:10</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>강토는 자신의 기타 강의 동영상을 블루레이로 만들어 판매하려고 한다. 블루레이에는 총 N개의 강의가 들어가는데, 블루레이를 녹화할 때, 강의의 순서가 바뀌면 안 된다. 순서가 뒤바뀌는 경우에는 강의의 흐름이 끊겨, 학생들이 대혼란에 빠질 수 있기 때문이다. 즉, i번 강의와 j번 강의를 같은 블루레이에 녹화하려면 i와 j 사이의 모든 강의도 같은 블루레이에 녹화해야 한다.</p>
+
+<p>강토는 이 블루레이가 얼마나 팔릴지 아직 알 수 없기 때문에, 블루레이의 개수를 가급적 줄이려고 한다. 오랜 고민 끝에 강토는 M개의 블루레이에 모든 기타 강의 동영상을 녹화하기로 했다. 이때, 블루레이의 크기(녹화 가능한 길이)를 최소로 하려고 한다. 단, M개의 블루레이는 모두 같은 크기이어야 한다.</p>
+
+<p>강토의 각 강의의 길이가 분 단위(자연수)로 주어진다. 이때, 가능한 블루레이의 크기 중 최소를 구하는 프로그램을 작성하시오.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>첫째 줄에 강의의 수 N (1 ≤ N ≤ 100,000)과 M (1 ≤ M ≤ N)이 주어진다. 다음 줄에는 강토의 기타 강의의 길이가 강의 순서대로 분 단위로(자연수)로 주어진다. 각 강의의 길이는 10,000분을 넘지 않는다.</p>
+
+<h3 id="출력">출력</h3>
+
+<p>첫째 줄에 가능한 블루레이 크기중 최소를 출력한다.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>알고리즘이 맞았다면 문제는 자료형, or 무한루프<br />
+(이 문제의 경우에는 블루레이 크기가 작아서 강의 하나도 제대로 못 담을 경우의 예외처리)</li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>블루레이 크기가 작아서 강의 하나도 제대로 못 담을 경우의 예외처리를 추가로 해주어야 한다.
+다행히 이 경우를 스스로 찾았다. (동일한 구조의 문제를 푼경험이 있기에)
+<a href="https://forwarder1121.github.io/%EB%B0%B1%EC%A4%80-%EC%9A%A9%EB%8F%88-%EA%B4%80%EB%A6%AC/">동일한 구조를 가진 문제 (용돈 관리)</a></li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>parametric search가 이제 익숙해져서 정말 쉽게 풀었다.<br />
+다만 상술한 예외처리를 안해서 틀려서 자료형이 문제인가? 생각하보았고, long long형으로 바꾸어도 보았다.<br />
+하지만 문제의 조건내에서 int형의 표현범위를 벗어나는 케이스는 나올수 없어 의아했고, 오버플로우가 문제가 아님을 깨달았다.<br />
+답은 추가적인 예외 조건(원소를 하나도 담지 못할 경우는 바로 실패 판정)을 해주는 것이였다.<br />
+명쾌하게 답을 내 스스로 구한 문제여서 기분이 좋다.<br />
+실력이 상승하는 것이 느껴진다.</p>
+
+<h1 id="내-코드">내 코드</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt;
+
+//Time Complexity : O(nlogn)
+
+int main() {
+
+	//input
+	int n, limit;
+	scanf("%d %d", &amp;n, &amp;limit);
+	int* lectures = (int*)malloc(sizeof(int) * n);
+	for (size_t i = 0; i &lt; n; i++)
+		scanf("%d", &amp;lectures[i]);
+	int low = 1, high=0;
+	for (size_t i= 0; i &lt; n; i++) {
+		high += lectures[i];
+	}
+
+
+	
+	while (low &lt;= high) {
+		int usedBlurays = 0; //소비된 블루레이 개수
+		int mid = low + (high - low) / 2;
+
+		//블루레이 기록하기 
+		int remainingSpace = 0;
+		bool isEnough = true;
+		for (size_t i = 0; i &lt;n; i++) {
+			if (lectures[i] &gt; mid) {
+				isEnough = false;
+				break;
+			}
+			if (lectures[i] &gt; remainingSpace) {
+				usedBlurays++;
+				remainingSpace = mid;
+			}
+			remainingSpace -= lectures[i];
+		}
+		
+		if (usedBlurays &gt; limit||!isEnough) low = mid + 1;
+		else high = mid - 1;
+	}
+	
+	printf("%d", low);
+
+	free(lectures);
+	return 0;
+}
+</code></pre></div></div>
+<p>굳!</p>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[[Silver I] 기타 레슨 - 2343]]></summary></entry><entry><title type="html">[백준] 랜선 자르기</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%9E%9C%EC%84%A0-%EC%9E%90%EB%A5%B4%EA%B8%B0/" rel="alternate" type="text/html" title="[백준] 랜선 자르기" /><published>2023-12-25T00:00:00+09:00</published><updated>2023-12-25T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EB%9E%9C%EC%84%A0%20%EC%9E%90%EB%A5%B4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%9E%9C%EC%84%A0-%EC%9E%90%EB%A5%B4%EA%B8%B0/"><![CDATA[<h2 id="silver-ii-랜선-자르기---1654">[Silver II] 랜선 자르기 - 1654</h2>
+
+<p><a href="https://www.acmicpc.net/problem/1654">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+<p>메모리: 8932 KB, 시간: 16 ms</p>
+
+<h3 id="분류">분류</h3>
+<p>이분 탐색, 매개 변수 탐색</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+<p>2023년 12월 26일 14:10:47</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+<p>집에서 시간을 보내던 오영식은 박성원의 부름을 받고 급히 달려왔다. 박성원이 캠프 때 쓸 N개의 랜선을 만들어야 하는데 너무 바빠서 영식이에게 도움을 청했다.</p>
+
+<p>이미 오영식은 자체적으로 K개의 랜선을 가지고 있다. 그러나 K개의 랜선은 길이가 제각각이다. 박성원은 랜선을 모두 N개의 같은 길이의 랜선으로 만들고 싶었기 때문에 K개의 랜선을 잘라서 만들어야 한다. 예를 들어 300cm 짜리 랜선에서 140cm 짜리 랜선을 두 개 잘라내면 20cm는 버려야 한다. (이미 자른 랜선은 붙일 수 없다.)</p>
+
+<p>편의를 위해 랜선을 자르거나 만들 때 손실되는 길이는 없다고 가정하며, 기존의 K개의 랜선으로 N개의 랜선을 만들 수 없는 경우는 없다고 가정하자. 그리고 자를 때는 항상 센티미터 단위로 정수 길이만큼 자른다고 가정하자. N개보다 많이 만드는 것도 N개를 만드는 것에 포함된다. 이때 만들 수 있는 최대 랜선의 길이를 구하는 프로그램을 작성하시오.</p>
+
+<h3 id="입력">입력</h3>
+<p>첫째 줄에는 오영식이 이미 가지고 있는 랜선의 개수 K, 그리고 필요한 랜선의 개수 N이 입력된다. K는 1 이상 10,000 이하의 정수이고, N은 1 이상 1,000,000 이하의 정수이다. 그리고 항상 K ≤ N 이다. 그 후 K줄에 걸쳐 이미 가지고 있는 각 랜선의 길이가 센티미터 단위의 정수로 입력된다. 랜선의 길이는 2<sup>31</sup>-1보다 작거나 같은 자연수이다.</p>
+
+<h3 id="출력">출력</h3>
+<p>첫째 줄에 N개를 만들 수 있는 랜선의 최대 길이를 센티미터 단위의 정수로 출력한다.</p>
+
+<hr />
+
+<h1 id="til">TIL</h1>
+<ul>
+  <li>빼기를 여러 번 진행하는 것보다 나눗셈을 이용하면 더 가독성이 좋다.</li>
+  <li>오버플로우는 “틀렸습니다.” 말고 무한 루프에 빠지게도 할 수 있다. 항상 최악의 경우(최대 입력)를 고려하자.</li>
+</ul>
+
+<h1 id="feedback">Feedback</h1>
+<ul>
+  <li>빼기로 배열의 값을 직접 변경하니 추가 임시 배열을 할당하고 가독성도 떨어졌다. 공간 복잡도가 증가했음.</li>
+  <li>그냥 나눗셈 연산을 진행하면 배열의 값을 건들이지 않아도 된다.</li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+<p>이제 parametric search의 패턴에 익숙해져서 기본적인 알고리즘은 매우 수월하게 구상하였고, 결정 함수 또한 수월하게 구상하였다. (아쉬운 점은 빼기를 반복하는 것이 아니라 정수 나눗셈 연산을 진행하면 더 고급진 코드가 될 수 있었다는 정도.) <br />
+예제 입력에 대해 맞는데 틀렸다고 계속 나와서 질문게시판의 오버플로우 가능성을 알려준 것을 보고 오버플로우가 어디서 발생할 수 있는지 알아보았다. <br />
+결국 문제 자체는 쉬웠는데 오버플로우가 나올 수 있는 상황을 생각하는 게 어려웠다.</p>
+
+<h1 id="내-코드">내 코드</h1>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 입력</span>
+    <span class="kt">int</span> <span class="n">K</span><span class="p">,</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">K</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+
+    <span class="kt">int</span><span class="o">*</span> <span class="n">lines</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">K</span><span class="p">);</span>
+    <span class="kt">long</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">high</span> <span class="o">=</span> <span class="n">high</span> <span class="o">&lt;</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">?</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">:</span> <span class="n">high</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 이진 탐색</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// 개수</span>
+        <span class="kt">long</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+
+        <span class="c1">// 랜선 자르기</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">mid</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 최대 길이 출력</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%ld"</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
+
+    <span class="c1">//</span>
+
+ <span class="err">메모리</span> <span class="err">해제</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">lines</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[[Silver II] 랜선 자르기 - 1654]]></summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2023-12-24T01:28:31+09:00</published><updated>2023-12-24T01:28:31+09:00</updated><id>http://localhost:4000/jekyll/update/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/welcome-to-jekyll/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>Jekyll requires blog post files to be named according to the following format:</p>
+
+<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+
+<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Your Name</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry><entry><title type="html">[일기] gdsc &amp;amp; 뤼튼 gen ai onboarding</title><link href="http://localhost:4000/%EC%9D%BC%EA%B8%B0-GDSC-&-%EB%A4%BC%ED%8A%BC-Gen-AI-Onboarding/" rel="alternate" type="text/html" title="[일기] gdsc &amp;amp; 뤼튼 gen ai onboarding" /><published>2023-12-24T00:00:00+09:00</published><updated>2023-12-24T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EC%9D%BC%EA%B8%B0%5D%20GDSC%20&amp;%20%EB%A4%BC%ED%8A%BC%20Gen%20AI%20Onboarding</id><content type="html" xml:base="http://localhost:4000/%EC%9D%BC%EA%B8%B0-GDSC-&amp;-%EB%A4%BC%ED%8A%BC-Gen-AI-Onboarding/"><![CDATA[<p>오늘은 정말 다양하고 흥미로운 경험을 얻었다.<br />
+콘서트에서는 AI와 OpenAI에 대한 다양한 주제가 다뤄졌고, 특히 산업 현장에서의 AI 기술 활용 및 미래에 대한 전망을 듣는 것은 정말로 유익했다.</p>
+
+<p>AI에 대해 전혀 모르는 상태에서 맨땅에 헤딩해보자는 마음가짐으로 참석했는데, 이는 굉장한 인사이트를 주는 경험이었다. 세상의 변화를 눈으로 직접 보는 느낌이었고, 부끄럽지만 나는 AI 분야에 대해 흥미를 가지고 있음에도 불구하고 그동안 하나도 모르고 있었다. 정적인 학교 커리큘럼을 충실히 따라가려는 나름의 노력이 있었지만, 그렇게 막연하게 생각하고 있었다는 점에서 큰 깨달음을 얻었다.</p>
+
+<p>콘서트 중에서 GDSC 동아리에 가입하기 위한 노력을 했다는 점을 추가로 알게 되었다. 그런데, GDSC 동아리의 모집 기간이 내가 알게 된 시점에서 이미 지나버려 아쉬웠다. 그러나 GDSC가 내년 6월부터 7월에 다시 모집한다는 정보를 획득했고, 그 동안 AI 관련 프로젝트를 진행하며 다음 학기에 지원할 계획을 세우기로 했다. 개발자 커뮤니티는 필수적인 요소이니, 지속적으로 참여하려고 한다.</p>
+
+<p>AI 기술을 수학적으로 응용하는 방법에 대한 내용도 들었는데, 특히 수학적 모델링을 통한 AI 알고리즘의 최적화에 대한 설명이 인상적이었다. ‘알잘딱깔센하는’ AI를 만들어주는 알고리즘이란 것을 소개받았고, 이를 활용하는 분야에서도 수학적 사고가 중요함을 강조받았다. 수학을 문제 해결의 도구로 사용하는 태도를 새롭게 배우게 되었다.</p>
+
+<p>기술 스택의 형성과 언어의 발전 이유를 탐구하면서 학습하는 것이 실제 적용에 큰 도움이 될 것이라는 조언도 있었다. 산업 현장에서 빠르게 새로운 기술을 경험하기 위해 소셜 미디어를 활용하는 습관이 중요하다는 인사이트를 얻었다. LinkedIn과 Twitter를 통한 네트워킹을 활성화시켜야겠다는 결심을 했다.</p>
+
+<p>또한, 함께 일하는 동료를 존중하는 것이 중요하다는 말에 동의했다. ‘같이 일하고 싶은 사람인가?’라는 질문을 통해 팀 프로젝트에서의 협업이 얼마나 중요한지 깨달았고, 동료들과의 관계를 존중하면서 성장해 나가기로 마음 먹었다. 과거의 나 혼자 다 하려는 태도를 반성하게 되었다.</p>
+
+<p>AI 기술을 활용하더라도 기초가 중요하다는 조언이 있었고, 개발자로서의 네트워킹이 필수적이라는 인사이트도 얻었다. 기술뿐만 아니라 기본적인 지식과 인간관계가 함께 발전해야 한다는 사실을 깨달았다.</p>
+
+<p>마지막으로, LLM과 Prompt Engineering에 대한 언급에 대해 처음에는 이해하지 못했다. 하지만, 이를 해소하기 위해 ChaptGPT와 머신러닝 책을 구입하여 공부하기로 마음먹었다. ChatGPT를 활용해보기 위해 노력 중이며, 이 일기 역시 ChatGPT와의 대화에서 나온 내용을 일부 수정한 것이다.</p>
+
+<p>이러한 경험을 통해 인공지능이 더욱 중요해지는 시대에 우리는 새로운 도전에 맞서 나가야 한다고 생각한다. 철기시대에는 철기를 이용하는 사람이 성공했고, 산업 혁명때는 산업화를 이룬 사람에게 자본이 몰렸다. 지금은 인공지능을 만들거나, 활용하는 사람이 성공하는 시대라고 믿는다.</p>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[오늘은 정말 다양하고 흥미로운 경험을 얻었다. 콘서트에서는 AI와 OpenAI에 대한 다양한 주제가 다뤄졌고, 특히 산업 현장에서의 AI 기술 활용 및 미래에 대한 전망을 듣는 것은 정말로 유익했다.]]></summary></entry><entry><title type="html">[백준] 용돈 관리</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EC%9A%A9%EB%8F%88-%EA%B4%80%EB%A6%AC/" rel="alternate" type="text/html" title="[백준] 용돈 관리" /><published>2023-12-24T00:00:00+09:00</published><updated>2023-12-24T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EC%9A%A9%EB%8F%88%20%EA%B4%80%EB%A6%AC</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EC%9A%A9%EB%8F%88-%EA%B4%80%EB%A6%AC/"><![CDATA[<p>백준 문제</p>
+
+<h1 id="silver-ii-용돈-관리---6236">[Silver II] 용돈 관리 - 6236</h1>
+
+<p><a href="https://www.acmicpc.net/problem/6236">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 1508 KB, 시간: 20 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>이분 탐색, 매개 변수 탐색</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 25일 16:51:58</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>현우는 용돈을 효율적으로 활용하기 위해 계획을 짜기로 하였다. 현우는 앞으로 N일 동안 자신이 사용할 금액을 계산하였고, 돈을 펑펑 쓰지 않기 위해 정확히 M번만 통장에서 돈을 빼서 쓰기로 하였다. 현우는 통장에서 K원을 인출하며, 통장에서 뺀 돈으로 하루를 보낼 수 있으면 그대로 사용하고, 모자라게 되면 남은 금액은 통장에 집어넣고 다시 K원을 인출한다. 다만 현우는 M이라는 숫자를 좋아하기 때문에, 정확히 M번을 맞추기 위해서 남은 금액이 그날 사용할 금액보다 많더라도 남은 금액은 통장에 집어넣고 다시 K원을 인출할 수 있다. 현우는 돈을 아끼기 위해 인출 금액 K를 최소화하기로 하였다. 현우가 필요한 최소 금액 K를 계산하는 프로그램을 작성하시오.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>1번째 줄에는 N과 M이 공백으로 주어진다. (1 ≤ N ≤ 100,000, 1 ≤ M ≤ N)</p>
+
+<p>2번째 줄부터 총 N개의 줄에는 현우가 i번째 날에 이용할 금액이 주어진다. (1 ≤ 금액 ≤ 10000)</p>
+
+<h3 id="출력">출력</h3>
+
+<p>첫 번째 줄에 현우가 통장에서 인출해야 할 최소 금액 K를 출력한다.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>만일 int a, int b가 표현가능 범위 내의 최댓값을 가지고 있다면, mid=(a+b)/2;는 오버플로우의 가능성을 지니고 있다.  따라서 mid=b/2+(a-b)/2와 같이 구하면 안전하다.<br />
+(이 문제에서는 필요 없긴 하다.)</li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>전형적인 parametric search 문제이다.<br />
+그러나 돈이 부족한 경우에 대한 것을 고려하지 않아 다른 사람의 코드를 참고하였다.<br />
+예제 입력에서 주어진 경우가 아니여서 이를 생각하기가 까다로웠고 시간이 오래걸렸다.<br />
+천천히 문제의 경우를 나누어 보도록 하자.</li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>첫 시도 : parametric search 쓰면 개 쉬운 문제<br />
+그런데 출금 단위가 애초에 부족한 경우를 깊게 고민하지 않아 시간을 많이 허비하였다.</p>
+
+<h1 id="내-코드">내 코드</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt;
+#define MAX 100000000
+
+int main()
+{
+	//input
+	int days, limit;
+	long long low=MAX,high = 0;
+	scanf("%d %d", &amp;days, &amp;limit);
+	int* plans = (int*)malloc(sizeof(int) * days);
+	for (size_t i = 0; i &lt; days; i++) {
+		scanf("%d", &amp;plans[i]);
+		low = low &gt; plans[i] ? plans[i] : low;
+	}
+	
+	
+	for (size_t i = 0; i &lt; days; i++) high += plans[i];
+
+	
+	//parametirc search
+	while (low &lt;= high) {
+		int mid = (low + high) / 2;
+		int count=0;//인출 횟수
+		int cur=0; //현재 수중에 있는 돈
+		bool pass = true;
+		for (size_t i = 0; i &lt; days; i++) {
+			if (mid &lt; plans[i]) {
+				pass = false;
+				break;
+			}
+			if (cur &lt; plans[i]) {//돈이 부족하다면
+				count++;
+				cur = mid;
+
+			}
+			cur -= plans[i];
+			
+		}
+		if (count &gt; limit||!pass) low = mid + 1; //불가능 -&gt; 더 큰 쪽에서 mid를 찾아
+		else high = mid - 1;//가능 -&gt; 더 작은 쪽에서 mid찾아
+	}
+	
+	printf("%d", low);
+	free(plans);
+
+	return 0;
+}
+
+</code></pre></div></div>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[백준 문제]]></summary></entry><entry><title type="html">[백준] 나무 자르기</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%82%98%EB%AC%B4-%EC%9E%90%EB%A5%B4%EA%B8%B0/" rel="alternate" type="text/html" title="[백준] 나무 자르기" /><published>2023-12-24T00:00:00+09:00</published><updated>2023-12-24T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EB%82%98%EB%AC%B4%20%EC%9E%90%EB%A5%B4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%82%98%EB%AC%B4-%EC%9E%90%EB%A5%B4%EA%B8%B0/"><![CDATA[<p>백준 문제</p>
+
+<h1 id="silver-ii-나무-자르기---2805">[Silver II] 나무 자르기 - 2805</h1>
+
+<p><a href="https://www.acmicpc.net/problem/2805">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 5020 KB, 시간: 224 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>이분 탐색, 매개 변수 탐색</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 25일 11:34:43</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>상근이는 나무 M미터가 필요하다. 근처에 나무를 구입할 곳이 모두 망해버렸기 때문에, 정부에 벌목 허가를 요청했다. 정부는 상근이네 집 근처의 나무 한 줄에 대한 벌목 허가를 내주었고, 상근이는 새로 구입한 목재절단기를 이용해서 나무를 구할것이다.</p>
+
+<p>목재절단기는 다음과 같이 동작한다. 먼저, 상근이는 절단기에 높이 H를 지정해야 한다. 높이를 지정하면 톱날이 땅으로부터 H미터 위로 올라간다. 그 다음, 한 줄에 연속해있는 나무를 모두 절단해버린다. 따라서, 높이가 H보다 큰 나무는 H 위의 부분이 잘릴 것이고, 낮은 나무는 잘리지 않을 것이다. 예를 들어, 한 줄에 연속해있는 나무의 높이가 20, 15, 10, 17이라고 하자. 상근이가 높이를 15로 지정했다면, 나무를 자른 뒤의 높이는 15, 15, 10, 15가 될 것이고, 상근이는 길이가 5인 나무와 2인 나무를 들고 집에 갈 것이다. (총 7미터를 집에 들고 간다) 절단기에 설정할 수 있는 높이는 양의 정수 또는 0이다.</p>
+
+<p>상근이는 환경에 매우 관심이 많기 때문에, 나무를 필요한 만큼만 집으로 가져가려고 한다. 이때, 적어도 M미터의 나무를 집에 가져가기 위해서 절단기에 설정할 수 있는 높이의 최댓값을 구하는 프로그램을 작성하시오.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>첫째 줄에 나무의 수 N과 상근이가 집으로 가져가려고 하는 나무의 길이 M이 주어진다. (1 ≤ N ≤ 1,000,000, 1 ≤ M ≤ 2,000,000,000)</p>
+
+<p>둘째 줄에는 나무의 높이가 주어진다. 나무의 높이의 합은 항상 M보다 크거나 같기 때문에, 상근이는 집에 필요한 나무를 항상 가져갈 수 있다. 높이는 1,000,000,000보다 작거나 같은 양의 정수 또는 0이다.</p>
+
+<h3 id="출력">출력</h3>
+
+<p>적어도 M미터의 나무를 집에 가져가기 위해서 절단기에 설정할 수 있는 높이의 최댓값을 출력한다.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>이런 문제는 binary search를 이용하는 알고리즘인 parametric search 라고 한다.<br />
+최적해를 찾는 문제를 결정문제로 바꾸어 풀 수 있다는 이점이 있다.</li>
+</ul>
+
+<p><a href="https://heytech.tistory.com/97">Parametric search란?</a></p>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>입력값을 받는 변수뿐만 아니라, 중간 중간 내가 삽입하는 변수에서도 오버플로우가 발생할 수 있다.<br />
+중간에 sum 변수가 오버플로우 되어서 실패했는데 원인을 찾지 못해 삽질을 열심히 했다.</li>
+  <li>분명 예제 입력에 대해 맞다면 edge case를 고려하자.<br />
+입력 값이 작거나, 오버플로우가 발생할 정도로 큰 경우를 말이다.</li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>N=10^6이므로 시간복잡도 O(N)인 순차탐색은 시간 초과 할 것이다. (문제 특성상 이중 for문이 필요하여 N^2의 시간이 필요)<br />
+parametric search로 해결하면 개 쉬운 문제구나 (NlogN에 해결 가능)  <br />
+sum 변수에서 오버플로우가 발생 -&gt; long long 자료형으로 해결</p>
+
+<p>참고 ) int형은 10^9 크기, 나무 길이 또한 10^9 단위였기에 오버플로우 발생 여지가 충분.<br />
+이 문제에서는 10^15까지 커버되는 자료형이 필요했음.<br />
+long long형은 무려 10^18까지 저장 가능한 8바이트 자료형이다.</p>
+
+<h1 id="내-코드">내 코드</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+
+int main()
+{
+	//input
+	int n, require, low = 0, high = 0;
+	scanf("%d %d", &amp;n, &amp;require);
+	int* trees = (int*)malloc(sizeof(int) * n);
+	for (size_t i = 0; i &lt; n; i++) {
+		scanf("%d", &amp;trees[i]);
+		high = high &lt; trees[i] ? trees[i] : high;
+	}
+	
+	//parametirc search
+	while (low &lt;= high) {
+		long long sum = 0;
+		int mid = (low + high) / 2;
+		for (size_t i = 0; i &lt; n; i++) {
+			sum += trees[i]&gt;=mid?trees[i]-mid :0 ;
+			
+		}
+		if (sum &lt; require) high = mid - 1; 
+		else low = mid + 1; 
+	}
+	
+	printf("%d", high);
+	free(trees);
+
+	return 0;
+}
+
+</code></pre></div></div>
+
+<p>깔끔하게 잘 짰다.<br />
+풀이법이 정해진 문제라 다른 사람도 다 비슷하게 해결하였음을 알 수 있다.</p>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[백준 문제]]></summary></entry><entry><title type="html">[백준] 단어 공부</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%8B%A8%EC%96%B4-%EA%B3%B5%EB%B6%80/" rel="alternate" type="text/html" title="[백준] 단어 공부" /><published>2023-12-24T00:00:00+09:00</published><updated>2023-12-24T00:00:00+09:00</updated><id>http://localhost:4000/%5B%EB%B0%B1%EC%A4%80%5D%20%EB%8B%A8%EC%96%B4%20%EA%B3%B5%EB%B6%80</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%8B%A8%EC%96%B4-%EA%B3%B5%EB%B6%80/"><![CDATA[<p>백준 문제</p>
+
+<h1 id="bronze-i-단어-공부---1157">[Bronze I] 단어 공부 - 1157</h1>
+
+<p><a href="https://www.acmicpc.net/problem/1157">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 1972 KB, 시간: 12 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>구현, 문자열</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 25일 20:50:42</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>알파벳 대소문자로 된 단어가 주어지면, 이 단어에서 가장 많이 사용된 알파벳이 무엇인지 알아내는 프로그램을 작성하시오. 단, 대문자와 소문자를 구분하지 않는다.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>첫째 줄에 알파벳 대소문자로 이루어진 단어가 주어진다. 주어지는 단어의 길이는 1,000,000을 넘지 않는다.</p>
+
+<h3 id="출력">출력</h3>
+
+<p>첫째 줄에 이 단어에서 가장 많이 사용된 알파벳을 대문자로 출력한다. 단, 가장 많이 사용된 알파벳이 여러 개 존재하는 경우에는 ?를 출력한다.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>모든 예제에 대해 맞고, 알고리즘 구현 또한 틀리지 않은 것 같다면 다음 두 가지 extreme Case를 고려하자.
+    <ol>
+      <li>입력이 최소인 경우 ex) 0이 입력인 경우의 구현 부재 -&gt; 예외 처리</li>
+      <li>입력이 최대인 경우 ex) 오버플로우 발생 -&gt; 자료형을 체크</li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<p>자료형에의 표현 범위를 주의하자.<br />
+특히 진짜 왜 안 되지… 라는 논리 에러에는 extreme-case에서의 자료형이 문제가 될 수 있다.</p>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>char 자료형을 중간에 써서 오버플로우가 발생하여 계속 틀렸었다.</p>
+
+<h1 id="내-코드">내 코드</h1>
+<p>내 것보다는 되게 세련되게 코드를 짠 분이 있길래 그분 거를 소개한다.</p>
+
+<ol>
+  <li>
+    <p>‘A’는 65, ‘a’는 ‘97’이다.
+즉 이들은 32만큼 차이가 난다.
+다시 말해 왼쪽에서 5번째 비트만 켜주면 된다.<br />
+이분은 이 지식을 활용하여 전처리문으로 비트 마스킹을 하여 구현하였다.<br />
+<del>존나 섹시해</del></p>
+  </li>
+  <li>나는 가장 많이 나온 알파벳을 초기에 미리 설정해 두지 않으면 구현 불가능할 것이라 생각하여 지저분하게 코드로 작성하였는데, 이분은 대입 연산을 그냥 두 번 하여 해결하였다. <br />
+정말 깔끔하다.</li>
+  <li>마무리 return 문 또한 삼항 연산자를 이용해 깔끔하다.</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdbool.h&gt;
+
+/**
+ * Capitals: 1 &lt;&lt; 5 bit off.
+ * A: 0100 0001
+ * Z: 0101 1010
+ *
+ * Non-capitals: 1 &lt;&lt; 5 bit on.
+ * a: 0110 0001
+ * z: 0111 1010
+ */
+#define ASCII_CHAR_UPPER(ch) (ch &amp; ~(1 &lt;&lt; 5))
+
+char word[1000000];
+char most_frequent_char(char *string);
+
+int main(int argc, char *argv[]) {
+	fread(word, 1, 1000000, stdin);
+	printf("%c\n", most_frequent_char(word));
+
+	return 0;
+}
+
+char most_frequent_char(char *string) {
+	size_t counts[26] = {0,};
+	size_t string_len = strlen(string);
+
+	// Count.
+	for (size_t i = 0; i &lt; string_len; ++i) {
+		counts[ASCII_CHAR_UPPER(string[i]) - 'A'] += 1;
+	}
+
+	size_t count_max = 0;
+	char most_frequent = '\0';
+	char duplicated = '\0';
+
+	// Get max.
+	// No duplications allowed.
+	for (size_t i = 0; i &lt; 26; ++i) {
+		if (counts[i] == count_max) {
+			duplicated = most_frequent = i + 'A';
+		}
+		else if (counts[i] &gt; count_max) {
+			count_max = counts[i];
+			most_frequent = i + 'A';
+		}
+	}
+
+	return (most_frequent == duplicated) ? '?' : most_frequent;
+}
+
+</code></pre></div></div>
+
+<ul>
+  <li>어떤 논리적인 오류가 있어 현재는 돌아가지 않는 코드이다.
+얻어갈 인사이트만 얻어 가도록 하자.</li>
+</ul>]]></content><author><name>Your Name</name></author><summary type="html"><![CDATA[백준 문제]]></summary></entry></feed>

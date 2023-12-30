@@ -1,0 +1,654 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[백준] 도토리 숨기기 - Site Title</title>
+<meta name="description" content="[Gold II] 도토리 숨기기 - 15732">
+
+
+  <meta name="author" content="Your Name">
+  
+  <meta property="article:author" content="Your Name">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Site Title">
+<meta property="og:title" content="[백준] 도토리 숨기기">
+<meta property="og:url" content="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%8F%84%ED%86%A0%EB%A6%AC-%EC%88%A8%EA%B8%B0%EA%B8%B0/">
+
+
+  <meta property="og:description" content="[Gold II] 도토리 숨기기 - 15732">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-12-28T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%8F%84%ED%86%A0%EB%A6%AC-%EC%88%A8%EA%B8%B0%EA%B8%B0/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Your Name",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Site Title Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Site Title
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Your Name</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>I am an <strong>amazing</strong> person.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Somewhere</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[백준] 도토리 숨기기">
+    <meta itemprop="description" content="[Gold II] 도토리 숨기기 - 15732">
+    <meta itemprop="datePublished" content="2023-12-28T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%EB%B0%B1%EC%A4%80-%EB%8F%84%ED%86%A0%EB%A6%AC-%EC%88%A8%EA%B8%B0%EA%B8%B0/" class="u-url" itemprop="url">[백준] 도토리 숨기기
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h1 id="gold-ii-도토리-숨기기---15732">[Gold II] 도토리 숨기기 - 15732</h1>
+
+<p><a href="https://www.acmicpc.net/problem/15732">문제 링크</a></p>
+
+<h3 id="성능-요약">성능 요약</h3>
+
+<p>메모리: 1116 KB, 시간: 4 ms</p>
+
+<h3 id="분류">분류</h3>
+
+<p>이분 탐색</p>
+
+<h3 id="제출-일자">제출 일자</h3>
+
+<p>2023년 12월 29일 10:23:07</p>
+
+<h3 id="문제-설명">문제 설명</h3>
+
+<p>HEPC 1등 상금으로 도토리 D개를 받은 욕심많은 다람쥐 수형이는 자신의 모든 도토리를 뺏기지 않게 보관하려고 한다. 수형이는 1부터 N까지의 번호가 붙여있는 N개의 상자를 가지고 있고 이 안에 도토리를 넣어 다른 다람쥐들이 찾지 못하게 전부 숨기려고 한다. 상자가 너무 많아 도토리가 있는 상자를 모두 외울 수 없는 수형이는 A번 상자부터 B번 상자까지 C개 간격으로 도토리를 하나씩 더 넣는 규칙을 만들었다! 다른 다람쥐들이 규칙을 눈치채고 모든 도토리를 잃는 것이 무서운 나머지 이러한 규칙들을 K개를 만들어 도토리를 최대한 안전하게 저장해 놓으려고 한다. 예를 들어 100번 상자부터 150번상자까지 10개 간격으로, 110번 상자부터 150번 상자까지 15개 간격으로 넣는다면 100, 110, 120, 125, 130, 140, 150번 상자에 도토리가 있으며 110번 상자와 140번 상자에는 2개의 도토리가 들어가 있게 된다. 상자 하나에 들어갈 수 있는 도토리의 개수는 제한이 없으며 앞의 상자부터 최대한 꽉꽉 채워나간다고 했을 때 마지막 도토리가 들어가 있는 상자의 번호를 출력하는 프로그램을 작성하시오.</p>
+
+<h3 id="입력">입력</h3>
+
+<p>첫째 줄에 상자의 개수 N(1 ≤ N ≤ 1,000,000)과 규칙의 개수 K(1 ≤ K ≤ 10,000), 도토리의 개수 D(1 ≤ D ≤ 1,000,000,000)가 주어진다. 그 후 K개 줄에는 A, B, C(1 ≤ C ≤ A ≤ B ≤ N)가 주어지며 A번 상자부터 B번 상자까지 C개 간격으로 도토리를 하나씩 넣는 규칙을 뜻한다. D는 모든 규칙으로 넣을 수 있는 도토리의 수보다 같거나 작다.</p>
+
+<h3 id="출력">출력</h3>
+
+<p>D개의 도토리를 규칙에 맞게 상자 앞에서부터 넣었을 때 마지막 도토리가 들어가는 상자의 번호를 출력하시오.</p>
+
+<h1 id="til">TIL</h1>
+
+<ul>
+  <li>MIN, MAX 함수 이용할 것.</li>
+  <li>mid를 좌,우로 이동할 때의 조건 설정 오류.</li>
+</ul>
+
+<h1 id="feedback">FeedBack</h1>
+
+<ul>
+  <li>mid가 각 규칙의 시작보다도 작을 경우는 도토리를 세면 안된다.
+이를 누락하여 틀렸다.</li>
+  <li>while(1)문으로 무식하게 하나하나 세는 알고리즘을 / 연산으로 바꾸는 생각은 잘했다.</li>
+</ul>
+
+<h1 id="내-접근">내 접근</h1>
+
+<p>mid가 각 규칙의 시작보다도 작을 경우는 도토리를 세면 안되었는데, 테스트 케이스에 없는 경우라 이를 떠올리지 못했다.<br />
+갈길이 멀다…</p>
+
+<h1 id="내-코드">내 코드</h1>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span>  <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#define MIN(X,Y) ((X) &lt; (Y) ? (X) : (Y))
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">start</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">end</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">space</span><span class="p">;</span>
+<span class="p">}</span><span class="n">Rule</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+	<span class="c1">//input</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">d</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">k</span><span class="p">,</span><span class="o">&amp;</span><span class="n">d</span><span class="p">);</span>
+	<span class="n">Rule</span><span class="o">*</span> <span class="n">rules</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rule</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Rule</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">space</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="kt">long</span> <span class="kt">long</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">long</span> <span class="kt">long</span>  <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+		<span class="kt">long</span> <span class="kt">long</span>  <span class="n">usedAcorn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		
+		<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">mid</span> <span class="o">&lt;</span> <span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// 이 부분 누락하여 틀림</span>
+			<span class="n">usedAcorn</span> <span class="o">+=</span> <span class="p">(</span><span class="n">MIN</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span><span class="o">-</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">space</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="k">if</span> <span class="p">(</span><span class="n">usedAcorn</span> <span class="o">&gt;=</span> <span class="n">d</span><span class="p">)</span> <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 이 부분도 등호 성립할때를 누락하였음</span>
+		<span class="k">else</span> <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		
+	<span class="p">}</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%lld"</span><span class="p">,</span> <span class="n">low</span><span class="p">);</span>
+
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>고수가 되고 싶지만 아직은 그렇지 못하다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-12-28T00:00:00+09:00">December 28, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%B0%B1%EC%A4%80%5D+%EB%8F%84%ED%86%A0%EB%A6%AC+%EC%88%A8%EA%B8%B0%EA%B8%B0%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B0%25B1%25EC%25A4%2580-%25EB%258F%2584%25ED%2586%25A0%25EB%25A6%25AC-%25EC%2588%25A8%25EA%25B8%25B0%25EA%25B8%25B0%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B0%25B1%25EC%25A4%2580-%25EB%258F%2584%25ED%2586%25A0%25EB%25A6%25AC-%25EC%2588%25A8%25EA%25B8%25B0%25EA%25B8%25B0%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B0%25B1%25EC%25A4%2580-%25EB%258F%2584%25ED%2586%25A0%25EB%25A6%25AC-%25EC%2588%25A8%25EA%25B8%25B0%25EA%25B8%25B0%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%B0%B1%EC%A4%80-%EA%B3%B5%EC%9C%A0%EA%B8%B0-%EC%84%A4%EC%B9%98/" class="pagination--pager" title="[백준] 공유기 설치
+">Previous</a>
+    
+    
+      <a href="/%EB%B0%B1%EC%A4%80-%EB%93%9C%EB%9E%98%EA%B3%A4-%EC%95%A4-%EB%8D%98%EC%A0%84/" class="pagination--pager" title="[백준] 드래곤 앤 던전
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EB%93%9C%EB%9E%98%EA%B3%A4-%EC%95%A4-%EB%8D%98%EC%A0%84/" rel="permalink">[백준] 드래곤 앤 던전
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Gold IV] 드래곤 앤 던전 - 16434
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EA%B3%B5%EC%9C%A0%EA%B8%B0-%EC%84%A4%EC%B9%98/" rel="permalink">[백준] 공유기 설치
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Gold IV] 공유기 설치 - 2110
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EB%9E%9C%EC%84%A0-%EC%9E%90%EB%A5%B4%EA%B8%B0/" rel="permalink">[백준] 랜선 자르기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Silver II] 랜선 자르기 - 1654
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80-%EA%B8%B0%ED%83%80-%EB%A0%88%EC%8A%A8/" rel="permalink">[백준] 기타 레슨
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">[Silver I] 기타 레슨 - 2343
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Your Name. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
