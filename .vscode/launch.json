@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/forwarder1121/Desktop/Blog/forwarder1121.github.io/백준/Silver/15651. N과 M （3）",
+      "program": "/Users/forwarder1121/Desktop/Blog/forwarder1121.github.io/백준/Silver/15651. N과 M （3）/build/Debug/outDebug"
+    }
+  ]
+}
