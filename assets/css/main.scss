@@ -5,12 +5,6 @@ search: false
 
 @charset "utf-8";
 
-
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
-@import "minimal-mistakes"; // main partials
-
-@import "notion-light.css"; //custom styles
-
 :root {
     /* Text editor */
     --bg-color: #ffffff;
@@ -865,3 +859,8 @@ megamenu-back-btn {
 .megamenu-menu-panel table tr:nth-child(2n + 1) {
     background-color: var(--side-bar-bg-color);
 }
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+@import "notion-light.css"; //custom styles
+
