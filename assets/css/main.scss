@@ -9,5 +9,5 @@ search: false
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-@import "notion-light.css"; //custom styles
+//@import "notion-light.css"; //custom styles
 
