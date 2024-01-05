@@ -5,6 +5,7 @@ search: false
 
 @charset "utf-8";
 
-@import "notion-light.css"; //custom theme
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+@import "notion-light.css"; //custom theme
