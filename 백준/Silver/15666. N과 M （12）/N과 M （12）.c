@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #define SIZE 9
 void selectionSort(int arr[],int size);
-void getPermutation(int list[],bool isVisted[],int N,int result[],int M,int depth,int* previousNodeValue);
+void getPermutation(int list[],int start,int N,int result[],int M,int depth,int* previousNodeValue);
 int main(){
 
     //input 
@@ -17,15 +17,14 @@ int main(){
 
     //getPermutation
     int result[SIZE]={0};
-    bool isVisted[SIZE]={0};
     int previousNodeValue=-1;
-    getPermutation(list,isVisted,N,result,M,0,&previousNodeValue);
+    getPermutation(list,0,N,result,M,0,&previousNodeValue);
 
 }
 
 
 //select result[depth] by using element of list
-void getPermutation(int list[],bool isVisted[],int N,int result[],int M,int depth,int* previousNodeValue){
+void getPermutation(int list[],int start,int N,int result[],int M,int depth,int* previousNodeValue){
     if(depth==M){
         for(size_t i=0;i<M;i++)
             printf("%d ",result[i]);
@@ -34,21 +33,16 @@ void getPermutation(int list[],bool isVisted[],int N,int result[],int M,int dept
     }
 
     //spreading 
-    for(size_t i=0;i<N;i++){
+    for(size_t i=start;i<N;i++){
         //pruning : except equal to previousNodeValue
-        //pruning : except lower value
-        bool flag=true;
-        for(size_t j=i+1;j<N;j++)
-            if(isVisted[j]) flag=false;
-        if(list[i]==*previousNodeValue) flag=false;
-        if(flag){
+        if(list[i]!=*previousNodeValue){
             result[depth]=list[i];
-            isVisted[i]=true;
             *previousNodeValue=-1;
-            getPermutation(list,isVisted,N,result,M,depth+1,previousNodeValue);
+            //pruning : except lower value
+            getPermutation(list,i,N,result,M,depth+1,previousNodeValue);
             //backtracking
             *previousNodeValue=list[i];
-            isVisted[i]=false;
+           
         }
         
     }
