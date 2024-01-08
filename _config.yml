@@ -292,4 +292,4 @@ defaults:
       related: true
       toc: true
       sidebar:
-  nav: "categories"
+        nav: "categories"
