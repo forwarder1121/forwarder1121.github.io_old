@@ -19,7 +19,7 @@ categories:
         url: /categories/dataStructure/
     children:
         - title: "Algorithm"
-          url: /categories/Algorithm/
+          url: /categories/algorithm/
   - title: "Problem Solving"
     children:
       - title: "백준"
@@ -29,6 +29,6 @@ categories:
         url: /categories/프로그래머스/
   - title: "Record"
       - title: "Diary"
-        url: /categories/Diary/
+        url: /categories/diary/
       - title: "Book review"
         url: /categories/bookReview/
