@@ -13,6 +13,8 @@ main:
 
   # sidebar navigation (categories)
 categories:
+  - title: "Categories1"
+    url: /categories/categories1/
   - title: "Computer Science"
     children:
       - title: "DataStructure"
