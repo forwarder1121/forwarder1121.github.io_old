@@ -10,3 +10,14 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+  # sidebar navigation (categories)
+categories:
+  - title: "Diary"
+    url: /categories/diray/
+  - title: "Diary"
+    url: /categories/categories2/
+  - title: "Categories3"
+    url: /categories/categories3/
+  - title: "Categories4"
+    url: /categories/categories4/
