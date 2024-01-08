@@ -27,4 +27,8 @@ categories:
         children:
       - title: "프로그래머스"
         url: /_pages/categories/프로그래머스/
-  
+  - title: "Record"
+      - title: "Diary"
+        url: /_pages/categories/diary/
+      - title: "Book review"
+        url: /_pages/categories/bookReview/
