@@ -1,7 +1,9 @@
-title: "diary" # 카테고리 이름
-layout: category
-permalink: /categories/diary/ # url
-author_profile: true
-taxonomy: diary
-sidebar:
-nav: "categories"
+---
+title: "diary"
+layout: archive
+permalink: /diary/
+---
+
+
+{% assign posts = site.categories.diary %}
+{% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
