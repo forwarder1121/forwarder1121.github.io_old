@@ -13,11 +13,22 @@ main:
 
   # sidebar navigation (categories)
 categories:
-  - title: "Diary"
-    url: /categories/diray/
-  - title: "Diary"
-    url: /categories/categories2/
-  - title: "Categories3"
-    url: /categories/categories3/
-  - title: "Categories4"
-    url: /categories/categories4/
+  - title: "Computer Science"
+    children:
+      - title: "Data Structure"
+        url: /categories/dataStructure/
+    children:
+        - title: "Categories7"
+          url: /categories/categories7/
+  - title: "Problem Solving"
+    children:
+      - title: "백준"
+        url: /categories/categories7/
+        children:
+      - title: "Categories7"
+        url: /categories/categories7/
+  - title: "Record"
+      - title: "Diary"
+        url: /categories/categories7/
+      - title: "Book review"
+        url: /categories/categories7/
