@@ -15,16 +15,16 @@ main:
 categories:
   - title: "Computer Science"
     children:
-      - title: "DataStructure"
-        url: /categories/dataStructure/
-    children:
         - title: "Algorithm"
           url: /categories/algorithm/
+    children:
+      - title: "DataStructure"
+        url: /categories/dataStructure/
   - title: "Problem Solving"
     children:
       - title: "백준"
-        url: /categories/백준/
+        url: /_pages/categories/백준/
         children:
       - title: "프로그래머스"
-        url: /categories/프로그래머스/
+        url: /_pages/categories/프로그래머스/
   
