@@ -1,5 +1,6 @@
 ---
-published: true
+categories:
+  - diary
 ---
 
 오늘은 정말 다양하고 흥미로운 경험을 얻었다.  
