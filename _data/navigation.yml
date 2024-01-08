@@ -18,17 +18,17 @@ categories:
       - title: "Data Structure"
         url: /categories/dataStructure/
     children:
-        - title: "Categories7"
-          url: /categories/categories7/
+        - title: "Algorithm"
+          url: /categories/Algorithm/
   - title: "Problem Solving"
     children:
       - title: "백준"
-        url: /categories/categories7/
+        url: /categories/백준/
         children:
-      - title: "Categories7"
-        url: /categories/categories7/
+      - title: "프로그래머스"
+        url: /categories/프로그래머스/
   - title: "Record"
       - title: "Diary"
-        url: /categories/categories7/
+        url: /categories/Diary/
       - title: "Book review"
-        url: /categories/categories7/
+        url: /categories/bookReview/
