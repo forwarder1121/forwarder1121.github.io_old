@@ -20,4 +20,9 @@ categories:
     children:
         - title: "Algorithm"
           url: /_pages/categories/algorithm/
-  
+  - title: "Problem Solving"
+    children:
+      - title: "백준"
+        url: /_pages/categories/백준/
+        children:
+     
